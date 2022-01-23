@@ -34,7 +34,7 @@ public class CardOrderTest {
     }
 
     @Test
-    public void shouldSendForm() {
+    public void shouldPositiveTest() {
         driver.get("http://localhost:9999.");
         driver.findElement(By.cssSelector("[type='text']")).sendKeys("Петров Иван");
         driver.findElement(By.cssSelector("[type='tel']")).sendKeys("+79106547898");
