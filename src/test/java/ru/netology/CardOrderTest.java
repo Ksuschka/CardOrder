@@ -1,13 +1,17 @@
 package ru.netology;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class CardOrderTest {
@@ -38,7 +42,7 @@ public class CardOrderTest {
     @Test
     public void shouldPositiveTest() {
         driver.get("http://localhost:9999");
-        driver.findElement(By.cssSelector("[type='text']")).sendKeys("Петров Иван");
+        driver.findElement(By.cssSelector("[type='text']")).sendKeys("Петров-Водкин Кузьма");
         driver.findElement(By.cssSelector("[type='tel']")).sendKeys("+79106547898");
         driver.findElement(By.cssSelector(".checkbox__box")).click();
         driver.findElement(By.cssSelector("button")).click();
@@ -101,7 +105,7 @@ public class CardOrderTest {
         driver.findElement(By.cssSelector("[type='text']")).sendKeys("Петров Иван");
         driver.findElement(By.cssSelector("[type='tel']")).sendKeys("+79106547898");
         driver.findElement(By.cssSelector("button")).click();
-        String text = driver.findElement(By.className("checkbox__text")).getCssValue("color");
-        assertEquals("rgba(255, 92, 92, 1)", text);
+        boolean isPresent = !driver.findElements(By.cssSelector(".input_invalid")).isEmpty();
+        assertTrue(isPresent);
     }
 }
